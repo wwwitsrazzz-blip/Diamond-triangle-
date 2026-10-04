@@ -1,0 +1,364 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diamond Triangle Eco-Loop | Odisha Buddhist Heritage & Community Tourism</title>
+  
+  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Oriya:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: {
+              DEFAULT: '#16382B',
+              50: '#F0F6F2',
+              100: '#DCECE2',
+              600: '#1D4A39',
+              800: '#133025',
+              900: '#0B1D16',
+            },
+            sandstone: {
+              DEFAULT: '#C86446',
+              light: '#E07A5F',
+              dark: '#9E442B',
+              50: '#FDF7F5',
+            },
+            buddhistGold: {
+              DEFAULT: '#D4AF37',
+              light: '#F4D068',
+              dark: '#AA881E',
+            },
+            ivory: {
+              DEFAULT: '#FAF7F2',
+              warm: '#F4EFE6',
+              card: '#FCFAF7',
+            },
+            charcoal: {
+              DEFAULT: '#1E2320',
+              muted: '#4B554E',
+              light: '#6B756E',
+            }
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            odia: ['Noto Sans Oriya', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Buddhist Dharmachakra and floral subtle accents */
+    .bg-pattern {
+      background-color: #FAF7F2;
+      background-image: radial-gradient(#C86446 0.65px, transparent 0.65px), radial-gradient(#16382B 0.65px, #FAF7F2 0.65px);
+      background-size: 26px 26px;
+      background-position: 0 0, 13px 13px;
+      background-opacity: 0.05;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F4EFE6;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 9999px;
+    }
+    .glass-nav {
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .glass-dark {
+      background: rgba(19, 48, 37, 0.90);
+      backdrop-filter: blur(14px);
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.03); }
+    }
+    .animate-pulse-slow {
+      animation: pulse-subtle 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .tab-active {
+      background-color: #16382B;
+      color: #FAF7F2;
+      box-shadow: 0 4px 12px rgba(22, 56, 43, 0.25);
+    }
+  </style>
+</head>
+
+<body class="bg-ivory text-charcoal font-sans antialiased selection:bg-buddhistGold selection:text-forest-900 pb-20 md:pb-0">
+
+  <div class="bg-forest-900 text-ivory text-xs py-2 px-4 border-b border-buddhistGold/20">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-buddhistGold/20 text-buddhistGold border border-buddhistGold/40">
+          ● Community Powered
+        </span>
+        <span class="hidden sm:inline text-ivory/80">Support rural Odia hosts, Buddhist craft guilds & sustainable heritage preservation</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-1 text-xs">
+          <span class="text-ivory/60">Language:</span>
+          <button onclick="setLanguage('en')" id="lang-en" class="px-1.5 py-0.5 rounded font-bold text-buddhistGold hover:underline">EN</button>
+          <span class="text-ivory/30">|</span>
+          <button onclick="setLanguage('or')" id="lang-or" class="px-1.5 py-0.5 rounded text-ivory/80 hover:text-buddhistGold font-odia">ଓଡ଼ିଆ</button>
+          <span class="text-ivory/30">|</span>
+          <button onclick="setLanguage('hi')" id="lang-hi" class="px-1.5 py-0.5 rounded text-ivory/80 hover:text-buddhistGold">हिंदी</button>
+        </div>
+        <button onclick="openAdminModal()" class="text-[11px] bg-white/10 hover:bg-white/20 text-ivory px-2 py-0.5 rounded transition">
+          Admin Console
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <header class="sticky top-0 z-40 glass-nav border-b border-sandstone/15 transition-all duration-300 shadow-sm" id="site-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo with Dharmachakra / Tri-peak Emblem -->
+        <a href="#hero" class="flex items-center space-x-3 group">
+          <div class="w-11 h-11 rounded-full bg-forest text-buddhistGold flex items-center justify-center border-2 border-buddhistGold/60 shadow-md group-hover:rotate-45 transition duration-500">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/>
+              <circle cx="12" cy="12" r="3" fill="#D4AF37"/>
+            </svg>
+          </div>
+          <div>
+            <span class="font-serif text-lg sm:text-xl font-bold tracking-tight text-forest block leading-none">
+              DIAMOND TRIANGLE
+            </span>
+            <span class="text-[10px] tracking-widest uppercase font-semibold text-sandstone block mt-0.5">
+              Eco-Loop • Odisha
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium text-charcoal">
+          <a href="#hero" class="hover:text-sandstone transition">Home</a>
+          <a href="#diamond-triangle" class="hover:text-sandstone transition">The Triangle</a>
+          <a href="#experiences" class="hover:text-sandstone transition">Experiences</a>
+          <a href="#stays" class="hover:text-sandstone transition">Community Stays</a>
+          <a href="#food" class="hover:text-sandstone transition">Local Food</a>
+          <a href="#market" class="hover:text-sandstone transition">Local Market</a>
+          <a href="#packages" class="hover:text-sandstone transition">Packages</a>
+          <a href="#archive" class="hover:text-sandstone transition">Heritage Archive</a>
+          <a href="#map-section" class="hover:text-sandstone transition">Trail Map</a>
+        </nav>
+
+        <!-- Right Side CTA and Cart -->
+        <div class="flex items-center space-x-3">
+          <!-- Cart Button with Counter -->
+          <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-full text-forest hover:bg-forest/10 transition" title="Shopping Cart">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <span id="cart-badge" class="absolute top-1 right-1 w-5 h-5 bg-sandstone text-white text-[10px] font-bold rounded-full flex items-center justify-center scale-0 transition-transform">
+              0
+            </span>
+          </button>
+
+          <!-- Book Now Primary Action -->
+          <button onclick="openBookingModal('General Experience Booking', 2400, 'All-Triangle Day Trail Pass')" class="hidden sm:inline-flex items-center space-x-2 bg-sandstone hover:bg-sandstone-dark text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
+            <span>Book Your Loop</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </button>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-forest hover:bg-forest/10 focus:outline-none">
+            <svg id="hamburger-icon" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-sandstone/15 bg-ivory-warm px-5 py-6 space-y-3">
+      <div class="grid grid-cols-2 gap-2 text-sm font-medium">
+        <a href="#hero" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-forest/10">Home</a>
+        <a href="#diamond-triangle" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-forest/10">The Triangle</a>
+        <a href="#experiences" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-forest/10">Experiences</a>
+        <a href="#stays" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-forest/10">Stays & Homestays</a>
+        <a href="#food" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-forest/10">Odia Food</a>
+        <a href="#market" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-forest/10">Craft Market</a>
+        <a href="#packages" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-forest/10">Tour Packages</a>
+        <a href="#planner" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-forest/10">Journey Planner</a>
+        <a href="#archive" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-forest/10">Living Archive</a>
+        <a href="#qr-section" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-forest/10">QR Audio Trail</a>
+      </div>
+      <div class="pt-3 border-t border-sandstone/20 flex flex-col space-y-2">
+        <button onclick="openBookingModal('All-Inclusive Diamond Triangle Pass', 3500, 'Triangle Signature Access'); toggleMobileMenu();" class="w-full bg-sandstone hover:bg-sandstone-dark text-white font-semibold py-3 rounded-xl text-center shadow">
+          Book Now • Plan Trip
+        </button>
+        <button onclick="openPartnerModal(); toggleMobileMenu();" class="w-full bg-forest text-ivory font-medium py-2.5 rounded-xl text-center text-sm border border-buddhistGold/40">
+          Become a Local Partner
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section id="hero" class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-forest-900">
+    <!-- Ambient Background with Heritage Visual overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=2000&q=80" 
+           alt="Buddhist Stupas and Sandstone Monasteries in Odisha" 
+           class="w-full h-full object-cover object-center opacity-30 mix-blend-luminosity scale-105 transform hover:scale-100 transition duration-1000"
+           onerror="this.src='https://placehold.co/1920x1080/16382B/D4AF37?text=Odisha+Buddhist+Diamond+Triangle'" />
+      <div class="absolute inset-0 bg-gradient-to-t from-forest-900 via-forest-900/70 to-forest-900/40"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-buddhistGold/15 via-transparent to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
+      
+      <!-- Subtle Monastery Badge -->
+      <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-buddhistGold/40 text-buddhistGold-light text-xs sm:text-sm font-medium mb-6 animate-pulse-slow">
+        <svg class="w-4 h-4 text-buddhistGold" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+        </svg>
+        <span class="tracking-wide">Sacred Buddhist Heritage & Rural Community Ecosystem</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-ivory tracking-tight leading-tight max-w-5xl mx-auto">
+        Discover Odisha’s Buddhist <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-buddhistGold via-sandstone-light to-buddhistGold">
+          Diamond Triangle
+        </span>
+      </h1>
+
+      <!-- Subheading -->
+      <p class="font-serif text-lg sm:text-2xl text-ivory/90 mt-4 tracking-widest uppercase font-semibold">
+        Lalitgiri &bull; Ratnagiri &bull; Udayagiri
+      </p>
+
+      <!-- Vision Statement -->
+      <p class="mt-5 text-base sm:text-xl text-ivory/80 max-w-3xl mx-auto font-light leading-relaxed">
+        “Walk through ancient Buddhist monasteries, taste authentic village cuisine, meet local artisans, and experience Odisha beyond the conventional tourist trail.”
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#diamond-triangle" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-sandstone hover:bg-sandstone-dark text-white font-semibold shadow-lg hover:shadow-sandstone/30 transition-all text-base flex items-center justify-center space-x-2">
+          <span>Explore the Diamond Triangle</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+          </svg>
+        </a>
+        <a href="#planner" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-forest-800/80 hover:bg-forest-800 text-ivory border border-buddhistGold/40 font-semibold backdrop-blur-md transition-all text-base flex items-center justify-center space-x-2">
+          <span>Plan My Journey</span>
+          <svg class="w-5 h-5 text-buddhistGold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="mt-12 max-w-5xl mx-auto bg-ivory rounded-3xl p-4 sm:p-6 shadow-2xl border border-sandstone/20 text-left">
+        <div class="text-xs font-bold uppercase tracking-wider text-forest mb-3 flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-sandstone animate-ping"></span>
+          <span>Find Experiences, Stays & Traditional Meals</span>
+        </div>
+        <form onsubmit="handleHeroSearch(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          
+          <!-- Destination Input -->
+          <div class="bg-ivory-warm p-3 rounded-2xl border border-sandstone/15">
+            <label class="block text-[11px] font-semibold text-charcoal/70 uppercase">Destination</label>
+            <select id="search-dest" class="w-full bg-transparent font-medium text-forest focus:outline-none text-sm pt-1">
+              <option value="all">All Three Sites</option>
+              <option value="lalitgiri">Lalitgiri Site</option>
+              <option value="ratnagiri">Ratnagiri Monastery</option>
+              <option value="udayagiri">Udayagiri Complex</option>
+            </select>
+          </div>
+
+          <!-- Date Selector -->
+          <div class="bg-ivory-warm p-3 rounded-2xl border border-sandstone/15">
+            <label class="block text-[11px] font-semibold text-charcoal/70 uppercase">Date</label>
+            <input type="date" id="search-date" class="w-full bg-transparent font-medium text-forest focus:outline-none text-sm pt-1" value="2026-10-15" />
+          </div>
+
+          <!-- Number of Guests -->
+          <div class="bg-ivory-warm p-3 rounded-2xl border border-sandstone/15">
+            <label class="block text-[11px] font-semibold text-charcoal/70 uppercase">Travelers</label>
+            <select id="search-guests" class="w-full bg-transparent font-medium text-forest focus:outline-none text-sm pt-1">
+              <option value="1">1 Solo Traveler</option>
+              <option value="2" selected>2 Guests (Couple/Duo)</option>
+              <option value="4">4 Guests (Family)</option>
+              <option value="8">Small Group (5-10)</option>
+            </select>
+          </div>
+
+          <!-- Category -->
+          <div class="bg-ivory-warm p-3 rounded-2xl border border-sandstone/15">
+            <label class="block text-[11px] font-semibold text-charcoal/70 uppercase">Category</label>
+            <select id="search-type" class="w-full bg-transparent font-medium text-forest focus:outline-none text-sm pt-1">
+              <option value="all">Experiences & Stays</option>
+              <option value="stay">Rural Homestay</option>
+              <option value="food">Village Kitchen / Food</option>
+              <option value="experience">Guided Heritage Trail</option>
+              <option value="package">Curated 3-Day Package</option>
+            </select>
+          </div>
+
+          <!-- Search Button -->
+          <div class="flex items-end">
+            <button type="submit" class="w-full h-full min-h-[50px] bg-forest hover:bg-forest-600 text-buddhistGold-light font-semibold rounded-2xl flex items-center justify-center space-x-2 transition shadow hover:shadow-lg">
+              <svg class="w-5 h-5 text-buddhistGold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              <span>Search Loop</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="mt-8 flex flex-wrap justify-center items-center gap-6 sm:gap-10 text-xs sm:text-sm text-ivory/80">
+        <div class="flex items-center space-x-2">
+          <span class="w-5 h-5 rounded-full bg-buddhistGold/20 text-buddhistGold flex items-center justify-center font-bold">✓</span>
+          <span>Verified Rural Hosts</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="w-5 h-5 rounded-full bg-buddhistGold/20 text-buddhistGold flex items-center justify-center font-bold">✓</span>
+          <span>Authentic Hygienic Local Food</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="w-5 h-5 rounded-full bg-buddhistGold/20 text-buddhistGold flex items-center justify-center font-bold">✓</span>
+          <span>Direct Village Economic Benefit</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="w-5 h-5 rounded-full bg-buddhistGold/20 text-buddhistGold flex items-center justify-center font-bold">✓</span>
+          <span>Standardized & Transparent Pricing</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="diamond-triangle" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-https://wa.me/917683830037?text=...
